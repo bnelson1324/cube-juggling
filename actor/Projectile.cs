@@ -4,18 +4,19 @@ namespace cubejuggling.actor;
 
 public partial class Projectile : Area3D
 {
-    [Export] private Vector3 _speed;
+    [Export] private float _speed;
 
-    private Vector3 _velocity;
+    private Vector3 _direction;
 
-    public void Initialize(Vector3 velocity)
+    public void Initialize(Vector3 position, Vector3 direction)
     {
-        _velocity = velocity;
-        LookAt(GlobalPosition + _velocity);
+        GlobalPosition = position;
+        _direction = direction.Normalized();
+        LookAt(GlobalPosition + _direction);
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        GlobalPosition += _velocity * _speed * (float)delta;
+        GlobalPosition += _direction * _speed * (float)delta;
     }
 }

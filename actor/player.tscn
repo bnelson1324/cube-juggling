@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqqef4oi7yyet"]
+[gd_scene load_steps=5 format=3 uid="uid://bqqef4oi7yyet"]
 
 [ext_resource type="Script" path="res://actor/Player.cs" id="1_dx4km"]
+[ext_resource type="PackedScene" uid="uid://dqughsmufiwku" path="res://actor/projectile.tscn" id="2_7u3ly"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sm1wn"]
 
@@ -10,6 +11,7 @@
 script = ExtResource("1_dx4km")
 _cameraSensitivity = 1.0
 _moveSpeed = 12.0
+_projectile = ExtResource("2_7u3ly")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_sm1wn")

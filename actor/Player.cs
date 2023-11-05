@@ -29,15 +29,15 @@ public partial class Player : CharacterBody3D
         // attack
         if (Input.IsActionJustPressed("attack_projectile"))
         {
-            
+            Projectile projectileInstance = _projectile.Instantiate<Projectile>();
+            GetTree().Root.AddChild(projectileInstance);
+            projectileInstance.Initialize(GlobalPosition, -_camera.GlobalTransform.Basis.Z);
         }
         else if (Input.IsActionJustPressed("attack_hitscan"))
         {
             // TODO
         }
     }
-
-    // TODO: on mouse click fire Projectile
 
     // TODO: check projectile works
 

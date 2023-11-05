@@ -1,6 +1,6 @@
 using Godot;
 
-namespace cubejuggling.player;
+namespace cubejuggling.actor;
 
 public partial class Projectile : Area3D
 {

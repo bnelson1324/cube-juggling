@@ -1,6 +1,6 @@
 using Godot;
 
-namespace cubejuggling.player;
+namespace cubejuggling.actor;
 
 public partial class Player : CharacterBody3D
 {
@@ -18,21 +18,28 @@ public partial class Player : CharacterBody3D
         Input.MouseMode = Input.MouseModeEnum.Captured;
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
-        Vector2 input = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-        Vector3 movement = (Basis * new Vector3(input.X, 0, input.Y) * new Vector3(1, 0, 1)).Normalized();
-        Velocity = movement * _moveSpeed * (float)delta;
+        // movement
+        Vector2 input = Input.GetVector("move_left", "move_right", "move_forward", "move_back");
+        Vector3 movement = _camera.Basis * new Vector3(input.X, 0, input.Y) * new Vector3(1, 0, 1).Normalized();
+        Velocity = movement * _moveSpeed;
         MoveAndSlide();
+
+        // attack
+        if (Input.IsActionJustPressed("attack_projectile"))
+        {
+            
+        }
+        else if (Input.IsActionJustPressed("attack_hitscan"))
+        {
+            // TODO
+        }
     }
 
     // TODO: on mouse click fire Projectile
 
     // TODO: check projectile works
-
-    public void OnMouseMotion(Vector2 mouseInput)
-    {
-    }
 
     public override void _UnhandledInput(InputEvent @event)
     {

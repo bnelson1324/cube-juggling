@@ -24,15 +24,14 @@ skeleton = NodePath("../..")
 
 [node name="Player" parent="." instance=ExtResource("1_22fqt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-_cameraSensitivity = 1.0
-_moveSpeed = 16.0
 _projectile = ExtResource("2_tf45v")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.71934, 0.694658, 0, 0.607562, -0.629149, 0.48481, 0.336777, -0.348743, -0.87462, 0, 50, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -10)
 mesh = SubResource("CapsuleMesh_dmsqq")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2nsafabepjpg"]
+
+[ext_resource type="Script" path="res://player/Projectile.cs" id="1_rnnty"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dqwnh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5sa1x"]
+
+[node name="Projectile" type="Area3D"]
+script = ExtResource("1_rnnty")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_dqwnh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_5sa1x")

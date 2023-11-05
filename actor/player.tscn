@@ -10,8 +10,8 @@
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_dx4km")
 _cameraSensitivity = 1.0
-_moveSpeed = 12.0
 _projectile = ExtResource("2_7u3ly")
+MoveSpeed = 16.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_sm1wn")

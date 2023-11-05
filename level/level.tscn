@@ -1,37 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://bx7xsn3fon357"]
+[gd_scene load_steps=5 format=3 uid="uid://bx7xsn3fon357"]
 
-[ext_resource type="PackedScene" uid="uid://bqqef4oi7yyet" path="res://player/player.tscn" id="1_22fqt"]
-[ext_resource type="PackedScene" uid="uid://c2nsafabepjpg" path="res://player/projectile.tscn" id="2_tf45v"]
+[ext_resource type="PackedScene" uid="uid://bqqef4oi7yyet" path="res://actor/player.tscn" id="1_22fqt"]
+[ext_resource type="PackedScene" uid="uid://cm4iboxisbown" path="res://actor/dummy.tscn" id="2_cbn5x"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_afhqu"]
-size = Vector3(100, 1, 100)
+[sub_resource type="BoxShape3D" id="BoxShape3D_hkr01"]
+size = Vector3(50, 1, 50)
 
-[sub_resource type="BoxMesh" id="BoxMesh_t571o"]
-size = Vector3(100, 1, 100)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_dmsqq"]
+[sub_resource type="BoxMesh" id="BoxMesh_boj3f"]
+size = Vector3(50, 1, 50)
 
 [node name="Level" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_afhqu")
+shape = SubResource("BoxShape3D_hkr01")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_t571o")
+mesh = SubResource("BoxMesh_boj3f")
 skeleton = NodePath("../..")
 
 [node name="Player" parent="." instance=ExtResource("1_22fqt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-_projectile = ExtResource("2_tf45v")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8)
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Dummy" parent="." instance=ExtResource("2_cbn5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -8)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.71934, 0.694658, 0, 0.607562, -0.629149, 0.48481, 0.336777, -0.348743, -0.87462, 0, 50, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -10)
-mesh = SubResource("CapsuleMesh_dmsqq")
+transform = Transform3D(0.267914, -0.951811, -0.149261, 0.685049, 0.0792631, 0.724172, -0.677444, -0.296267, 0.673273, 0, 0, 0)

@@ -13,6 +13,12 @@ public partial class Projectile : Area3D
         GlobalPosition = position;
         _direction = direction.Normalized();
         LookAt(GlobalPosition + _direction);
+        
+        // collision
+        AreaEntered += (Area3D other) =>
+        {
+            // TODO: check if actor or terrain
+        };
     }
 
     public override void _PhysicsProcess(double delta)

@@ -66,12 +66,10 @@ public partial class Projectile : Area3D
                 var ray = PhysicsRayQueryParameters3D.Create(GlobalPosition, a.GlobalPosition, 0b1);
                 var res = spaceState.IntersectRay(ray);
                 if (res.ContainsKey("position"))
-                {
                     continue;
-                }
 
                 // damage actor if no obstruction
-                HitActor(a, immuneActors, a.GlobalPosition.DistanceTo(GlobalPosition) / _explosionRadius);
+                HitActor(a, immuneActors, Mathf.Min(GlobalPosition.DistanceTo(a.GlobalPosition) / _explosionRadius, 1));
             }
 
             // emit signals

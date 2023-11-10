@@ -10,8 +10,8 @@
 collision_mask = 3
 script = ExtResource("1_7r56j")
 _speed = 30.0
-_knockbackMultiplier = 10.0
-_extraKnockback = Vector3(0, 20, 0)
+_knockbackMultiplier = 7.0
+_extraKnockback = Vector3(0, 2, 0)
 _explosionRadius = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

@@ -53,7 +53,15 @@ public partial class Projectile : Area3D
             // knockback actors in results
             foreach (Actor a in results)
             {
-                // TODO: do raycast to determine if reachable. raycast should only consider terrain (mask=0b1)
+                // check for obstruction
+                var ray = PhysicsRayQueryParameters3D.Create(GlobalPosition,a.GlobalPosition, 0b1);
+                var res = spaceState.IntersectRay(ray);
+                if (res.ContainsKey("position"))
+                {
+                    continue;
+                }
+                
+                // damage actor if no obstruction
                 HitActor(a, immuneActors, a.GlobalPosition.DistanceTo(GlobalPosition) / _explosionRadius);
             }
 

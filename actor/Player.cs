@@ -31,7 +31,7 @@ public partial class Player : Actor
         {
             Projectile projectileInstance = _projectile.Instantiate<Projectile>();
             GetTree().Root.AddChild(projectileInstance);
-            projectileInstance.Initialize(GlobalPosition, -_camera.GlobalTransform.Basis.Z.Normalized());
+            projectileInstance.Initialize(GlobalPosition, -_camera.GlobalTransform.Basis.Z.Normalized(), this);
         }
         else if (Input.IsActionJustPressed("attack_hitscan"))
         {

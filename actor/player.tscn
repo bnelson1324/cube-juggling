@@ -8,6 +8,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_nwthg"]
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_dx4km")
 _cameraSensitivity = 1.0
 _projectile = ExtResource("2_7u3ly")

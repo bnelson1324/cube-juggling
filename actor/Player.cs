@@ -9,12 +9,17 @@ public partial class Player : Actor
     [Export] private PackedScene _projectile;
 
     private Camera3D _camera;
+    private AudioStreamPlayer3D _audioPlayerLaunch, _audioPlayerExplosion;
 
     public override void _Ready()
     {
         base._Ready();
         _camera = GetNode<Camera3D>("Camera3D");
         Input.MouseMode = Input.MouseModeEnum.Captured;
+
+        // audio
+        _audioPlayerLaunch = GetNode<AudioStreamPlayer3D>("AudioLaunch");
+        _audioPlayerExplosion = GetNode<AudioStreamPlayer3D>("AudioExplosion");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -32,6 +37,8 @@ public partial class Player : Actor
             Projectile projectileInstance = _projectile.Instantiate<Projectile>();
             GetTree().Root.AddChild(projectileInstance);
             projectileInstance.Initialize(_camera.GlobalPosition, -_camera.GlobalTransform.Basis.Z.Normalized(), this);
+            _audioPlayerLaunch.Play();
+            projectileInstance.Exploded += () => _audioPlayerExplosion.Play();
         }
         else if (Input.IsActionJustPressed("attack_hitscan"))
         {

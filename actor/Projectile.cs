@@ -6,6 +6,9 @@ namespace cubejuggling.actor;
 
 public partial class Projectile : Area3D
 {
+    [Signal]
+    public delegate void ExplodedEventHandler();
+
     [Export] private float _speed;
     [Export] private float _knockbackMultiplier;
     [Export] private float _explosionRadius;
@@ -66,6 +69,9 @@ public partial class Projectile : Area3D
                 HitActor(a, immuneActors, a.GlobalPosition.DistanceTo(GlobalPosition) / _explosionRadius);
             }
 
+            // emit signal
+            EmitSignal(SignalName.Exploded);
+
             // destroy projectile
             QueueFree();
         };
@@ -85,7 +91,7 @@ public partial class Projectile : Area3D
     public override void _PhysicsProcess(double delta)
     {
         GlobalPosition += _direction * _speed * (float)delta;
-        
+
         // projectile lifetime
         if (Time.GetTicksMsec() - _createTime > 10000)
             QueueFree();

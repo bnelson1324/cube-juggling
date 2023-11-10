@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx7xsn3fon357"]
+[gd_scene load_steps=6 format=3 uid="uid://bx7xsn3fon357"]
 
 [ext_resource type="PackedScene" uid="uid://bqqef4oi7yyet" path="res://actor/player.tscn" id="1_22fqt"]
 [ext_resource type="PackedScene" uid="uid://cm4iboxisbown" path="res://actor/dummy.tscn" id="2_cbn5x"]
+[ext_resource type="Texture2D" uid="uid://chvm8ff43evvq" path="res://crosshair-green.png" id="2_wtn0w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hkr01"]
 size = Vector3(50, 1, 50)
@@ -24,6 +25,14 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 8)
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
+
+[node name="TextureRect" type="TextureRect" parent="Player/Camera3D"]
+offset_left = 564.0
+offset_top = 312.0
+offset_right = 596.0
+offset_bottom = 344.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_wtn0w")
 
 [node name="Dummy" parent="." instance=ExtResource("2_cbn5x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -8)

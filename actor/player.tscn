@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://actor/Player.cs" id="1_dx4km"]
 [ext_resource type="PackedScene" uid="uid://dqughsmufiwku" path="res://actor/projectile.tscn" id="2_7u3ly"]
 [ext_resource type="AudioStream" uid="uid://d04jmey4v435m" path="res://rocket-launch.wav" id="3_b850l"]
-[ext_resource type="AudioStream" uid="uid://bagqmx6rkaaqu" path="res://rocket-explosion.wav" id="4_2el5n"]
+[ext_resource type="AudioStream" uid="uid://hvhyahwukttx" path="res://hitsound.wav" id="4_f0hgc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sm1wn"]
 
@@ -25,7 +25,9 @@ mesh = SubResource("CapsuleMesh_nwthg")
 [node name="AudioLaunch" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
 stream = ExtResource("3_b850l")
-volume_db = -29.0
+volume_db = -30.0
 
-[node name="AudioExplosion" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_2el5n")
+[node name="AudioHitsound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+stream = ExtResource("4_f0hgc")
+volume_db = -20.0

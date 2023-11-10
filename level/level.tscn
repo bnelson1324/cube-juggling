@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://chvm8ff43evvq" path="res://crosshair-green.png" id="2_wtn0w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hkr01"]
-size = Vector3(50, 1, 50)
+size = Vector3(25, 1, 25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_boj3f"]
-size = Vector3(50, 1, 50)
+size = Vector3(25, 1, 25)
 
 [node name="Level" type="Node3D"]
 
@@ -25,6 +25,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 8)
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="TextureRect" type="TextureRect" parent="Player/Camera3D"]
 offset_left = 564.0

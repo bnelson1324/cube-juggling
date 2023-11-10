@@ -6,6 +6,8 @@ public partial class Actor : CharacterBody3D
 {
     [Export] protected float MoveSpeed;
 
+    [Export] private float _frictionValue = 6f;
+
     [Export] private float _gravityMultiplier = 1;
 
     private float _gravity;
@@ -17,10 +19,20 @@ public partial class Actor : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
-        // TODO: gravity
+        // gravity
         if (!IsOnFloor())
         {
-            Velocity += Vector3.Down * _gravity * (float)delta;
+            Velocity += Vector3.Down * _gravity * _gravityMultiplier * (float)delta;
         }
+
+        // friction
+        if (IsOnFloor())
+        {
+            float newX = Mathf.Lerp(Velocity.X, 0, _frictionValue * (float)delta);
+            float newZ = Mathf.Lerp(Velocity.Z, 0, _frictionValue * (float)delta);
+            Velocity = new Vector3(newX, Velocity.Y, newZ);
+        }
+
+        MoveAndSlide();
     }
 }

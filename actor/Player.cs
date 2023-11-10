@@ -12,6 +12,7 @@ public partial class Player : Actor
 
     public override void _Ready()
     {
+        base._Ready();
         _camera = GetNode<Camera3D>("Camera3D");
         Input.MouseMode = Input.MouseModeEnum.Captured;
     }
@@ -24,7 +25,6 @@ public partial class Player : Actor
         Vector2 input = Input.GetVector("move_left", "move_right", "move_forward", "move_back");
         Vector3 movement = (_camera.Basis * new Vector3(input.X, 0, input.Y) * new Vector3(1, 0, 1)).Normalized();
         Velocity = Velocity * new Vector3(0, 1, 0) + movement * MoveSpeed;
-        MoveAndSlide();
 
         // attack
         if (Input.IsActionJustPressed("attack_projectile"))

@@ -9,6 +9,9 @@ public partial class Projectile : Area3D
     [Signal]
     public delegate void ExplodedEventHandler();
 
+    [Signal]
+    public delegate void DamageDealtEventHandler();
+
     [Export] private float _speed;
     [Export] private float _knockbackMultiplier;
     [Export] private float _explosionRadius;
@@ -69,8 +72,10 @@ public partial class Projectile : Area3D
                 HitActor(a, immuneActors, a.GlobalPosition.DistanceTo(GlobalPosition) / _explosionRadius);
             }
 
-            // emit signal
+            // emit signals
             EmitSignal(SignalName.Exploded);
+            if (immuneActors.Count > 1)
+                EmitSignal(SignalName.DamageDealt);
 
             // destroy projectile
             QueueFree();

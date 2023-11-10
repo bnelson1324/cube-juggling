@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Godot.Collections;
 
 namespace cubejuggling.actor;
 
@@ -13,6 +12,7 @@ public partial class Projectile : Area3D
 
     private Vector3 _direction;
     private Rid _explosionSpherecastRid;
+    private ulong _createTime;
 
     public void Initialize(Vector3 position, Vector3 direction, Actor owner)
     {
@@ -24,6 +24,7 @@ public partial class Projectile : Area3D
         // misc
         _explosionSpherecastRid = PhysicsServer3D.SphereShapeCreate();
         PhysicsServer3D.ShapeSetData(_explosionSpherecastRid, _explosionRadius);
+        _createTime = Time.GetTicksMsec();
 
         // collision
         BodyEntered += other =>
@@ -54,13 +55,13 @@ public partial class Projectile : Area3D
             foreach (Actor a in results)
             {
                 // check for obstruction
-                var ray = PhysicsRayQueryParameters3D.Create(GlobalPosition,a.GlobalPosition, 0b1);
+                var ray = PhysicsRayQueryParameters3D.Create(GlobalPosition, a.GlobalPosition, 0b1);
                 var res = spaceState.IntersectRay(ray);
                 if (res.ContainsKey("position"))
                 {
                     continue;
                 }
-                
+
                 // damage actor if no obstruction
                 HitActor(a, immuneActors, a.GlobalPosition.DistanceTo(GlobalPosition) / _explosionRadius);
             }
@@ -84,5 +85,9 @@ public partial class Projectile : Area3D
     public override void _PhysicsProcess(double delta)
     {
         GlobalPosition += _direction * _speed * (float)delta;
+        
+        // projectile lifetime
+        if (Time.GetTicksMsec() - _createTime > 10000)
+            QueueFree();
     }
 }

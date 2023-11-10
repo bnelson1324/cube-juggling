@@ -12,9 +12,12 @@ public partial class Actor : CharacterBody3D
 
     private float _gravity;
 
+    private Vector3 _originalPosition;
+
     public override void _Ready()
     {
         _gravity = (float)ProjectSettings.GetSetting("physics/3d/default_gravity");
+        _originalPosition = GlobalPosition;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -34,5 +37,12 @@ public partial class Actor : CharacterBody3D
         }
 
         MoveAndSlide();
+
+        // check if should reset to original position
+        if (GlobalPosition.Y < -5)
+        {
+            GlobalPosition = _originalPosition;
+            Velocity = Vector3.Zero;
+        }
     }
 }

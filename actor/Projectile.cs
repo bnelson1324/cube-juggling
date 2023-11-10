@@ -11,6 +11,7 @@ public partial class Projectile : Area3D
 
     [Export] private float _speed;
     [Export] private float _knockbackMultiplier;
+    [Export] private Vector3 _extraKnockback;
     [Export] private float _explosionRadius;
 
     private Vector3 _direction;
@@ -41,6 +42,7 @@ public partial class Projectile : Area3D
                     return;
 
                 HitActor(actor, immuneActors, 1);
+                actor.Velocity += _extraKnockback;
             }
 
             // explode, knocking back everything except immuneActors
